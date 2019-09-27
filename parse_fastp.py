@@ -39,31 +39,31 @@ clean_len2 =data['read2_after_filtering']['total_cycles']
 ## raw left read
 for i in range(raw_len1):
 	qs = data['read1_before_filtering']['quality_curves']['mean'][i]
-	raw_qm.write("%d\t%0.6f\t%0.6f\n" % (i,qs,qs2error(qs)))
+	raw_qm.write("%d\t%0.6f\t%0.6f\n" % (i,qs,qs2error(qs)*100))
 	gc_content = data['read1_before_filtering']['content_curves']
-	raw_gc.write("%d\tA\t%f\tT\t%f\tG\t%f\tC\t%f\tN\t%f\n" % (i,gc_content['A'][i],gc_content['T'][i], \
-		gc_content['G'][i],gc_content['C'][i],gc_content['N'][i]))
+	raw_gc.write("%d\tA\t%f\tT\t%f\tG\t%f\tC\t%f\tN\t%f\n" % (i,gc_content['A'][i]*100,gc_content['T'][i]*100, \
+		gc_content['G'][i]*100,gc_content['C'][i]*100,gc_content['N'][i]*100))
 ## raw right read
 for i in range(raw_len2):
 	qs = data['read2_before_filtering']['quality_curves']['mean'][i]
-	raw_qm.write("%d\t%0.6f\t%0.6f\n" % (raw_len1+i,qs,qs2error(qs)))
+	raw_qm.write("%d\t%0.6f\t%0.6f\n" % (raw_len1+i,qs,qs2error(qs)*100))
 	gc_content = data['read2_before_filtering']['content_curves']
-	raw_gc.write("%d\tA\t%f\tT\t%f\tG\t%f\tC\t%f\tN\t%f\n" % (raw_len1+i,gc_content['A'][i],gc_content['T'][i], \
-		gc_content['G'][i],gc_content['C'][i],gc_content['N'][i]))
+	raw_gc.write("%d\tA\t%f\tT\t%f\tG\t%f\tC\t%f\tN\t%f\n" % (raw_len1+i,gc_content['A'][i]*100,gc_content['T'][i]*100, \
+		gc_content['G'][i]*100,gc_content['C'][i]*100,gc_content['N'][i]*100))
 ## clean left read
 for i in range(clean_len1):
 	qs = data['read1_after_filtering']['quality_curves']['mean'][i]
-	clean_qm.write("%d\t%0.6f\t%0.6f\n" % (i,qs,qs2error(qs)))
+	clean_qm.write("%d\t%0.6f\t%0.6f\n" % (i,qs,qs2error(qs)*100))
 	gc_content = data['read1_after_filtering']['content_curves']
-	clean_gc.write("%d\tA\t%f\tT\t%f\tG\t%f\tC\t%f\tN\t%f\n" % (i,gc_content['A'][i],gc_content['T'][i], \
-		gc_content['G'][i],gc_content['C'][i],gc_content['N'][i]))
+	clean_gc.write("%d\tA\t%f\tT\t%f\tG\t%f\tC\t%f\tN\t%f\n" % (i,gc_content['A'][i]*100,gc_content['T'][i]*100, \
+		gc_content['G'][i]*100,gc_content['C'][i]*100,gc_content['N'][i]*100))
 ## clean right read
 for i in range(clean_len2):
 	qs = data['read2_after_filtering']['quality_curves']['mean'][i]
-	clean_qm.write("%d\t%0.6f\t%0.6f\n" % (clean_len1+i,qs,qs2error(qs)))
+	clean_qm.write("%d\t%0.6f\t%0.6f\n" % (clean_len1+i,qs,qs2error(qs)*100))
 	gc_content = data['read2_after_filtering']['content_curves']
-	clean_gc.write("%d\tA\t%f\tT\t%f\tG\t%f\tC\t%f\tN\t%f\n" % (clean_len1+i,gc_content['A'][i],gc_content['T'][i], \
-		gc_content['G'][i],gc_content['C'][i],gc_content['N'][i]))
+	clean_gc.write("%d\tA\t%f\tT\t%f\tG\t%f\tC\t%f\tN\t%f\n" % (clean_len1+i,gc_content['A'][i]*100,gc_content['T'][i]*100, \
+		gc_content['G'][i]*100,gc_content['C'][i]*100,gc_content['N'][i]*100))
 
 q20_raw1 = float(data['read1_before_filtering']['q20_bases'])/(data['read1_before_filtering']['total_bases'])*100
 q20_raw2 = float(data['read2_before_filtering']['q20_bases'])/(data['read2_before_filtering']['total_bases'])*100
@@ -82,11 +82,11 @@ qs_raw2 = mean(data['read2_before_filtering']['quality_curves']['mean'])
 qs_clean1 = mean(data['read1_after_filtering']['quality_curves']['mean'])
 qs_clean2 = mean(data['read2_after_filtering']['quality_curves']['mean'])
 
-total_reads = data['summary']['before_filtering']['total_reads']
-clean_reads = data['summary']['after_filtering']['total_reads']
-low_quality_reads = data['filtering_result']['low_quality_reads']
-too_many_N_reads = data['filtering_result']['too_many_N_reads']
-adapter_reads = data['filtering_result']['too_short_reads']
+total_reads = data['summary']['before_filtering']['total_reads']/2
+clean_reads = data['summary']['after_filtering']['total_reads']/2
+low_quality_reads = data['filtering_result']['low_quality_reads']/2
+too_many_N_reads = data['filtering_result']['too_many_N_reads']/2
+adapter_reads = data['filtering_result']['too_short_reads']/2
 
 stat.write("Type\tRaw data\tClean data\n")
 stat.write("Number of Reads:\t%d\t%d\n"%(total_reads, clean_reads))
@@ -106,7 +106,7 @@ stat.write("GC of fq2:\t%0.2f%%\t%0.2f%%\n"%(gc_raw2,gc_clean2))
 stat.write("Error of fq1:\t%0.2f%%\t%0.2f%%\n"%(qs2error(qs_raw1)*100,qs2error(qs_clean1)*100))
 stat.write("Error of fq2:\t%0.2f%%\t%0.2f%%\n"%(qs2error(qs_raw2)*100,qs2error(qs_clean2)*100))
 stat.write("Discard Reads related to N:\t%0.2f%%\n" % (float(too_many_N_reads)/total_reads*100))
-stat.write("Discard Reads related to low qual:\t%0.2f%%\n" % (float(too_many_N_reads)/total_reads*100))
+stat.write("Discard Reads related to low qual:\t%0.2f%%\n" % (float(low_quality_reads)/total_reads*100))
 stat.write("Discard Reads related to Adapter:\t%0.2f%%\n" % (float(adapter_reads)/total_reads*100))
 stat.write("Reads Classification:\t%d\t%d\t%d\t%d\t%d\n"%(total_reads,clean_reads,too_many_N_reads,low_quality_reads,adapter_reads))
 
