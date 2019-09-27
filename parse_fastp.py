@@ -106,7 +106,7 @@ stat.write("GC of fq2:\t%0.2f%%\t%0.2f%%\n"%(gc_raw2,gc_clean2))
 stat.write("Error of fq1:\t%0.2f%%\t%0.2f%%\n"%(qs2error(qs_raw1)*100,qs2error(qs_clean1)*100))
 stat.write("Error of fq2:\t%0.2f%%\t%0.2f%%\n"%(qs2error(qs_raw2)*100,qs2error(qs_clean2)*100))
 stat.write("Discard Reads related to N:\t%0.2f%%\n" % (float(too_many_N_reads)/total_reads*100))
-stat.write("Discard Reads related to low qual:\t%0.2f%%\n" % (float(too_many_N_reads)/total_reads*100))
+stat.write("Discard Reads related to low qual:\t%0.2f%%\n" % (float(low_quality_reads)/total_reads*100))
 stat.write("Discard Reads related to Adapter:\t%0.2f%%\n" % (float(adapter_reads)/total_reads*100))
 stat.write("Reads Classification:\t%d\t%d\t%d\t%d\t%d\n"%(total_reads,clean_reads,too_many_N_reads,low_quality_reads,adapter_reads))
 
