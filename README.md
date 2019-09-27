@@ -14,7 +14,7 @@ This is a modified version, contains function of length limitation of adapter tr
 For general usage:
 ```
 ## only overlap used for trimming
-fastp -i testdata/R1.fq.gz \
+./centos/fastp -i testdata/R1.fq.gz \
   -I testdata/R2.fq.gz \
   -o testdata/R1.clean.fq.gz \
   -O testdata/R2.clean.fq.gz \
@@ -34,7 +34,7 @@ fastp -i testdata/R1.fq.gz \
 
 ```
 ##  overlap and adapter sequence trimming
-fastp -i testdata/R1.fq.gz \
+./centos/fastp -i testdata/R1.fq.gz \
   -I testdata/R2.fq.gz \
   -o testdata/R1.clean.fq.gz \
   -O testdata/R2.clean.fq.gz \
