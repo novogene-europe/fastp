@@ -370,6 +370,9 @@ public:
     bool verbose;
     // merge options
     MergeOptions merge;
+    // output clean data; added by zanmer
+    bool byCleanData;
+    long clean;
 
 };
 

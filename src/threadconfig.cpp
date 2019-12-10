@@ -108,6 +108,9 @@ void ThreadConfig::initWriterForSplit() {
 
 void ThreadConfig::markProcessed(long readNum) {
     mCurrentSplitReads += readNum;
+    if(mOptions->clean > 0 && mCurrentSplitReads > mOptions->clean){
+        mCanBeStopped = true;
+    }
     if(!mOptions->split.enabled)
         return ;
     // if splitting is enabled, check whether current file is full

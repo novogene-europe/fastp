@@ -8,8 +8,9 @@ This is a modified version, contains function of length limitation of adapter tr
 1. add --min_trim_length option, which is used to limit the length of adapter trimming, default 10.
 
 2. the origin --overlap_diff_limit option is unapplicable, we revised the code and used it to selection the overlap result. 
+3. add --clean_reads option, can generate required number of clean data. WARNING: 1000 raw reads are dealed once time, so the read number of output would be a little more than the required one.
 
-3. parse_fastp.py is used to summary the fastp's json file and plot.
+4. parse_fastp.py is used to summary the fastp's json file and plot.
 
 For general usage:
 ```

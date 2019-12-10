@@ -139,6 +139,7 @@ int main(int argc, char* argv[]){
     cmd.add<int>("split", 's', "split output by limiting total split file number with this option (2~999), a sequential number prefix will be added to output name ( 0001.out.fq, 0002.out.fq...), disabled by default", false, 0);
     cmd.add<long>("split_by_lines", 'S', "split output by limiting lines of each file with this option(>=1000), a sequential number prefix will be added to output name ( 0001.out.fq, 0002.out.fq...), disabled by default", false, 0);
     cmd.add<int>("split_prefix_digits", 'd', "the digits for the sequential number padding (1~10), default is 4, so the filename will be padded as 0001.xxx, 0 to disable padding", false, 4);
+    cmd.add<long>("clean_reads", 'C', "number of clean reads of output, BE CAREFULL: 1000 raw reads are dealed once time, so the read number of clean will be a little different. Default is none", false, 0);
 
     // deprecated options
     cmd.add("cut_by_quality5", 0, "DEPRECATED, use --cut_front instead.");
@@ -319,6 +320,12 @@ int main(int argc, char* argv[]){
 
     // threading
     opt.thread = cmd.get<int>("thread");
+    // add by zanmer
+    if(cmd.exist("clean_reads")) {
+        opt.byCleanData = true;
+        opt.clean = cmd.get<long>("clean_reads");
+        opt.thread = 1;
+    }
 
     // reporting
     opt.jsonFile = cmd.get<string>("json");

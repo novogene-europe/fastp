@@ -27,6 +27,8 @@ Options::Options(){
     verbose = false;
     seqLen1 = 151;
     seqLen2 = 151;
+    byCleanData = false;
+    clean = 0;
 }
 
 void Options::init() {

@@ -314,7 +314,15 @@ bool PairEndProcessor::processPairEnd(ReadPairPack* pack, ThreadConfig* config){
     string failedOut;
     int readPassed = 0;
     int mergedCount = 0;
+//    cerr << "clean data: " << mOptions->clean <<endl;
+//    cerr << "thread: " << mOptions->thread <<endl;
+//    cerr << "PACK_SIZE " << PACK_SIZE <<endl;
+//    cerr << "PACK_NUM_LIMIT " << PACK_NUM_LIMIT <<endl;
     for(int p=0;p<pack->count;p++){
+        // added by zanmer
+//        if(mOptions->clean > 0 && mOptions->clean <= readPassed){
+//            break;
+//        }
         ReadPair* pair = pack->data[p];
         Read* or1 = pair->mLeft;
         Read* or2 = pair->mRight;
